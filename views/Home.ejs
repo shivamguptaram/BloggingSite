@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging For Job</title>
+   
+  </head>
+<style>
+  a {
+    text-decoration: none;
+    color: black;
+}
+#main {
+  width: 50%;
+  text-align: center;
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: black 1px solid;  
+  margin: auto;
+  margin-bottom: 4px;
+  font-family: sans-serif;
+  border-radius: 10px;
+  line-height: 2em;
+  padding-bottom: 5px;
+}
+p.datecontent {
+  text-align: right;
+  font-size: smaller;
+  text-align-last: right;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.data-content{
+      background: #f3f3f3
+}
+.data-par{
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+</style>
+
+<body>
+
+    <form method="POST" action="/save">
+        <fieldset>
+          <legend>Create New Blog</legend>
+          <table>
+            
+            <tr>
+              <td><label for="Title">Title</label>
+                </td>
+              <td><input type="text" name="Title" id="Title" ></td>
+              
+            </tr>
+            <tr>
+              <td> <label for="size_2">Description</label>
+                </td>
+              <td><input type="text" name="Description" id="Description" ></td>
+              
+            </tr>
+            <tr>
+              <td> <label for="start">Date</label>
+
+                
+                </td>
+              <td><input type="date" id="start" name="Date"
+                value="2021-11-08"
+                min="2021-01-01" ></td>
+              
+            </tr>
+          </table>
+          <p>
+              <input type="submit" id="Submit" value="Post">
+          </p>
+          
+          
+
+        </fieldset>
+      </form>
+     <h1>Welcome to Blog Post</h1>  
+<!-- Loop to display all Blog post -->
+        <% for(var i=0; i< data.length; i++) {%> 
+            <div id="main">
+                <a href='#'id= <%= data[i].title %> onclick="details(event); return false;" ondblclick="closeDetails(event)" name=<%= data[i].title %> value= <%= data[i]._id %> ><%= data[i].title %></a>
+                <div class="data-content" id= <%= data[i]._id %> hidden>
+                    <p class="data-par"> Content:- <%= data[i].description %></p>
+                    <p class="datecontent"> created on:- <%= data[i].date %></p>
+                </div>
+            </div>
+        <% } %>
+
+    
+</body>
+<script type='text/javascript'>
+  //Onsingle click call details
+    function details(e){
+        console.log("curr value",e.path[0].id);
+        console.log("curr value",e);
+        document.getElementById(e.path[0].attributes.value.nodeValue).style.display='block';
+        }
+
+        //on doubleclick call closeDetails
+    function closeDetails(e){
+      console.log("Inside doubleclick")
+      document.getElementById(e.path[0].attributes.value.nodeValue).style.display='none'
+     
+    }
+</script>
+</html>
