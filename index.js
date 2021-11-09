@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
-mongoose.connect('mongodb+srv://shivamgupta_ram:Mukti%4015feb@shivamgupta.lwygp.mongodb.net/BlogTesting')
+mongoose.connect('mongodb+srv://shivamgupta_ram:<MongodbPassword>@shivamgupta.lwygp.mongodb.net/BlogTesting')
 .catch((error)=>{
     console.log("error in mongo",error);
 });
