@@ -19,26 +19,6 @@ const Blog = mongoose.model('Blog',{
 });
 
 
-
-// const User = mongoose.model('User',{
-//     name: { type: String },
-//     age: { type: Number }
-// });
-  
-// var new_user = new User({
-//     name: 'Manish',
-//     age:34
-// })
-  
-// new_user.save(function(err,result){
-//     if (err){
-//         console.log(err);
-//     }
-//     else{
-//         console.log(result)
-//     }
-// });
-
 function UploadDataInMongodb(title_data,descr_data,date_data)
 {
     console.log(title_data,descr_data,date_data);
@@ -56,13 +36,12 @@ new_blog.save(function(err,result){
         console.log(result)
     }
 });
-
-
 }
 
-// index page
+// Function Retrive blog from mongodb
 app.get('/', function(req, res) {
-    Blog.find((err, docs) => {
+    
+    Blog.find((err, docs) => { 
         if (!err) {
             console.log(docs[0]);
         } else {
@@ -73,17 +52,13 @@ app.get('/', function(req, res) {
     });
 });
 
-// about page
-app.get('/about', function(req, res) {
-  res.render('pages/about');
-});
-
+//function to save data in mongodb
 app.post('/save',async(req,res)=>{
     console.log("Title",req.body.Title);
     console.log("Desc",req.body.Description);
     console.log("Date_type",typeof(req.body.Date));
     console.log("Date",req.body.Date);
-    await UploadDataInMongodb(req.body.Title,req.body.Description,req.body.Date)
+    await UploadDataInMongodb(req.body.Title,req.body.Description,req.body.Date)  //Function to save data in database.
     res.redirect('/');
     // console.log(req.body);
     // console.log("Title",req.body.Title);
